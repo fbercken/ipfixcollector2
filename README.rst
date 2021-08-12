@@ -106,7 +106,7 @@ Finally, build and install the collector:
 
 .. code-block:: bash
 
-    $ git clone https://github.com/fberken/ipfixcol2.git
+    $ git clone https://github.com/fbercken/ipfixcollector2.git
     $ cd ipfixcol2
     $ mkdir build && cd build && cmake ..
     $ make

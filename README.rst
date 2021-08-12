@@ -190,15 +190,15 @@ Get IPFIX data from DEF CON and unpack, or other sites as www.netresec.com ...
 
 .. code-block::
 
-$ wget https://media.defcon.org/DEF%20CON%2026/DEF%20CON%2026%20ctf/DEF%20CON%2026%20ctf%20packet%20captures.rar
-$ unrar x  'DEF CON 26 ctf packet captures.rar'
+  $ wget https://media.defcon.org/DEF%20CON%2026/DEF%20CON%2026%20ctf/DEF%20CON%2026%20ctf%20packet%20captures.rar
+  $ unrar x  'DEF CON 26 ctf packet captures.rar'
 
 
 Launch the IPFIX collector with:
 
 .. code-block::
 
-$ ipfixcol2 -c udp2json.xml
+  $ ipfixcol2 -c udp2json.xml
 
 Ingest data to IPFIXCollecter
 

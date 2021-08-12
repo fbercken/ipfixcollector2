@@ -180,3 +180,20 @@ be useful also for other users? Please, share your experiences and thoughts.
    :target: https://github.com/CESNET/ipfixcol2/tree/master
 .. |BuildDevel| image:: https://github.com/CESNET/ipfixcol2/workflows/Build%20and%20tests/badge.svg?branch=devel
    :target: https://github.com/CESNET/ipfixcol2/tree/devel
+
+
+
+RUN IPFIXCol2 and Ingest data
+--------------
+
+Get IPFIX data from DEF CON or other sites as www.netresec.com ...
+
+.. code-block::
+$ wget https://media.defcon.org/DEF%20CON%2026/DEF%20CON%2026%20ctf/DEF%20CON%2026%20ctf%20packet%20captures.rar
+$ unrar x  'DEF CON 26 ctf packet captures.rar'
+
+
+Ingest data to IPFIXCollecter
+
+.. code-block::
+  $ yaf --in 'DEF CON 26 ctf packet captures.pcap' --out localhost --ipfix-port 4739  --ipfix udp

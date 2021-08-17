@@ -201,7 +201,7 @@ Launch the IPFIX collector with:
   $ ipfixcol2 -c udp2json.xml
   
   
-  udp2json.xml example to support file and Data Fabric Event Store:
+udp2json.xml example to support file and Data Fabric Event Store:
   
   
  .. code-block::
@@ -289,6 +289,7 @@ Modified Files:
   src/plugins/output/json/src/File.cpp and .hpp:
   
   Add .json extension when the open file is closed (have to change cpp cj
+
 
   src/plugins/output/json/src/Kafka.cpp:
   

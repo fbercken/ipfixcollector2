@@ -100,7 +100,11 @@ Kafka::Kafka(const struct cfg_kafka &cfg, ipx_ctx_t *ctx)
     rd_kafka_conf_set_opaque(kafka_cfg.get(), m_thread.get());
 
     // Create the Kafka connector
-    m_kafka.reset(rd_kafka_new(RD_KAFKA_PRODUCER, kafka_cfg.get(), err_str, err_size));
+    // FBerque 2021/08/15: Modify to support Event Store
+    m_kafka.reset( rd_kafka_new(RD_KAFKA_PRODUCER, rd_kafka_conf_new(), err_str, err_size));
+    // Original: 
+    //m_kafka.reset(rd_kafka_new(RD_KAFKA_PRODUCER, kafka_cfg.get(), err_str, err_size));
+        
     if (!m_kafka) {
         size_t err_len = strnlen(err_str, err_size);
         throw std::runtime_error("Failed to create Kafka producer: " + std::string(err_str, err_len));

@@ -199,11 +199,89 @@ Launch the IPFIX collector with:
 .. code-block::
 
   $ ipfixcol2 -c udp2json.xml
+  
+  
+  udp2json.xml example to support file and Data Fabric Event Store
+  
+ .. code-block::
+ 
+ <ipfixcol2>
+  <!-- Input plugins -->
+  <inputPlugins>
+    <input>
+      <name>UDP collector</name>
+      <plugin>udp</plugin>
+      <params>
+        <!-- List on port 4739 -->
+        <localPort>4739</localPort>
+        <!-- Bind to all local adresses -->
+        <localIPAddress></localIPAddress>
+      </params>
+    </input>
+  </inputPlugins>
 
-Ingest data to IPFIXCollecter
+  <!-- Output plugins -->
+  <outputPlugins>
+    <output>
+     <name>JSON output</name>
+      <plugin>json</plugin>
+       <verbosity>debug</verbosity>
+      <params>
+        <!-- JSON format paramters -->
+        <tcpFlags>formatted</tcpFlags>
+        <timestamp>formatted</timestamp>
+        <protocol>formatted</protocol>
+        <ignoreUnknown>false</ignoreUnknown>
+        <ignoreOptions>true</ignoreOptions>
+        <nonPrintableChar>true</nonPrintableChar>
+
+        <!-- Output methods -->
+        <outputs>
+          <!-- Create a local server on port 8000 -->
+          <server>
+            <name>Local server</name>
+            <port>8000</port>
+            <blocking>no</blocking>
+          </server>
+          
+          <print>
+            <name>Printer to standard output</name>
+          </print>
+
+          <file>
+            <name>Store to files</name>
+            <path>/mapr/edge1.com/ipfix/flow/%Y/%m/%d/</path>
+            <prefix>json.</prefix>
+            <timeWindow>300</timeWindow>
+            <timeAlignment>yes</timeAlignment>
+            <compression>none</compression>
+          </file>
+
+          <kafka>
+             <name>Send to Kafka</name>
+             <brokers>127.0.0.1</brokers>
+             <topic>/sensor:ipfix</topic>
+             <blocking>false</blocking>
+             <partition>unassigned</partition>
+             <property>
+                <key>compression.codec</key>
+                <value>lz4</value>
+              </property>
+          </kafka>
+        </outputs>
+      </params>
+    </output>
+  </outputPlugins>
+</ipfixcol2>
+
+
+
+Ingest data to IPFIXCollector
 
 .. code-block::
 
   $ yaf --in 'DEF CON 26 ctf packet captures.pcap' --out localhost --ipfix-port 4739  --ipfix udp
 
+
+Modified Files:
 

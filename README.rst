@@ -201,7 +201,8 @@ Launch the IPFIX collector with:
   $ ipfixcol2 -c udp2json.xml
   
   
-  udp2json.xml example to support file and Data Fabric Event Store
+  udp2json.xml example to support file and Data Fabric Event Store:
+  
   
  .. code-block::
  
@@ -268,11 +269,11 @@ Launch the IPFIX collector with:
                 <value>lz4</value>
               </property>
           </kafka>
-        </outputs>
-      </params>
-    </output>
-  </outputPlugins>
-</ipfixcol2>
+         </outputs>
+       </params>
+     </output>
+   </outputPlugins>
+  </ipfixcol2>
 
 
 
@@ -284,4 +285,12 @@ Ingest data to IPFIXCollector
 
 
 Modified Files:
+
+  src/plugins/output/json/src/File.cpp and .hpp:
+  
+  Add .json extension when the open file is closed (have to change cpp cj
+
+  src/plugins/output/json/src/Kafka.cpp:
+  
+  Change the kafka producer configuration to support Data Fabric Event Store.
 

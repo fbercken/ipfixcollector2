@@ -204,7 +204,7 @@ Launch the IPFIX collector with:
 udp2json.xml example to support file and Data Fabric Event Store:
   
   
- .. code-block::
+.. code-block::
  
  <ipfixcol2>
   <!-- Input plugins -->

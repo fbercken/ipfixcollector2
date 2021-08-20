@@ -182,6 +182,27 @@ be useful also for other users? Please, share your experiences and thoughts.
    :target: https://github.com/CESNET/ipfixcol2/tree/devel
 
 
+POST Installation relative to MapR (Event Store)
+--------------
+
+Remove the old librdkafka.so files to keep only this one relative to MapR:
+
+.. code-block::
+
+  $ apt list --installed | grep librdkafka 
+  
+Copy the librdkafka.so from /opt/mapr/lib to /usr/lib/x86_64-linux-gnu
+
+Add a file named  /etc/ld.so.conf.d/maprkafka.conf  if it does not exist and type /opt/mapr/lib
+
+.. code-block::
+
+  $ vi /etc/ld.so.conf.d/maprkafka.conf
+  $ /opt/mapr/lib
+
+Rebuild ipfixcol project from ./build folder with the makefile to use the  Kafka MapR Event Store
+
+
 
 RUN IPFIXCol2 and Ingest data
 --------------
